@@ -42,6 +42,4 @@ myClock.stop();
 >});
 >```
 
-Once you have created a SpeakingClock instance, it will start announcing the time every minutes, starting one minute after creation.
-
 You can make an instance tell the time at any moment by calling its method `tellTime()`, or mute and unmute it using its methods `mute()` and `unmute()`.
