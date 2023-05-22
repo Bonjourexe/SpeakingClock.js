@@ -19,6 +19,14 @@ const myClock = new SpeakingClock({
     interval: 30000 // Optional interval in milliseconds (default: 60000)
 });
 ```
+then start the instance:
+```JS
+myClock.start();
+```
+If you want to stop it:
+```JS
+myClock.stop();
+```
 
 >### Tip :
 >Time measurements can be represented using the `UNITS` object, which defines time units in milliseconds. The available units are:
@@ -27,7 +35,7 @@ const myClock = new SpeakingClock({
 >- `UNITS.HOUR` (3600000 milliseconds)
 >- `UNITS.DAY` (86400000 milliseconds)
 >
->For example, to set the interval to 30 seconds, you would use:
+>For example, to create an instance with an interval of 30 seconds, you would use:
 >```JS
 >const myClock = new SpeakingClock({
 >  interval: UNITS.SECOND * 30,

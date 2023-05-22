@@ -37,6 +37,12 @@ function SpeakingClock(options) {
     utterance.lang = options.lang;
 
     /**
+     * Gets the current options of the instance
+     * @returns {Object} Current options.
+     */
+    this.getOptions = () => ({ ...options });
+
+    /**
      * Gets the current time and utters in the instance's language
      */
     this.tellTime = () => {
@@ -45,7 +51,7 @@ function SpeakingClock(options) {
         window.speechSynthesis.speak(utterance);
     }
 
-    let interval = setInterval(this.tellTime, options.interval);
+    let instanceInterval;
 
     /**
      * Sets the voice's volume to zero
@@ -59,5 +65,35 @@ function SpeakingClock(options) {
      */
     this.unmute = () => {
         utterance.volume = options.volume;
+    }
+
+    /**
+     * Sets the voice's volume
+     */
+    this.setVolume = (volume) => {
+        utterance.volume = volume;
+    }
+
+    /**
+     * Sets the instance's interval between announcements
+     */
+    this.setInterval = (interval) => {
+        options.interval = interval;
+        this.start();
+    }
+
+    /**
+     * Removes the instance's interval
+     */
+    this.stop = () => {
+        clearInterval(instanceInterval);
+    }
+
+    /**
+     * Resets the instance's interval
+     */
+    this.start = () => {
+        this.stop();
+        instanceInterval = setInterval(this.tellTime, options.interval);
     }
 }
