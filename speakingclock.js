@@ -18,6 +18,7 @@ const UNITS = Object.freeze({
  * @param {number} options.rate The rate to use for speech synthesis. Must be between 0.1 and 10.
  * @param {string} options.lang The language to use for speech synthesis. Must be a valid BCP 47 language tag. If not provided, defaults to the language of the user's browser.
  * @param {number} options.interval The time interval between announcements, in milliseconds. Defaults to 1 minute.
+ * @param {boolean} options.tellDate Whether the clock will only tell the time or both the date and time. Defaults to true.
  */
 function SpeakingClock(options) {
     options = Object.assign({
@@ -26,7 +27,8 @@ function SpeakingClock(options) {
         pitch: 1,
         rate: 1,
         lang: navigator.language,
-        interval: UNITS.MINUTE
+        interval: UNITS.MINUTE,
+        tellDate: false
     }, options);
 
     let utterance = new SpeechSynthesisUtterance();
@@ -46,7 +48,8 @@ function SpeakingClock(options) {
      * Gets the current time and utters in the instance's language
      */
     this.tellTime = () => {
-        utterance.text = new Date().toLocaleString(options.lang);
+        if (options.tellDate) utterance.text = new Date().toLocaleString(options.lang);
+        else utterance.text = new Date().toLocaleTimeString(options.lang);
         console.log(utterance);
         window.speechSynthesis.speak(utterance);
     }

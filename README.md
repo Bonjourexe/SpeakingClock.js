@@ -16,7 +16,8 @@ const myClock = new SpeakingClock({
     pitch: 1.2, // Optional pitch setting between 0 and 2 (default: 1)
     rate: 1.5, // Optional rate setting between 0.1 and 10 (default: 1)
     lang: 'en-US', // Optional BCP 47 language tag (default: browser language)
-    interval: 30000 // Optional interval in milliseconds (default: 60000)
+    interval: 30000, // Optional interval in milliseconds (default: 60000)
+    tellDate: true // Optional boolean indicating whether to announce both the date and time or only the time (default: false)
 });
 ```
 then start the instance:
